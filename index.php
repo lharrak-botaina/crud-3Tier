@@ -19,6 +19,7 @@
         <a href="add.php">add student </a>
         <table>
             <tr>
+                <th>id</th>
                 <th>first name</th>
                 <th>last name</th>
                 <th>birthday</th>
@@ -29,6 +30,7 @@
             ?>
 
             <tr>
+                <td><?= $value->getId() ?></td>
                 <td><?= $value->getFirstName() ?></td>
                 <td><?= $value->getLastName() ?></td>
                 <td><?= $value->getBirthday() ?></td>

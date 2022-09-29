@@ -28,7 +28,11 @@ class StudentBLL{
        return $EditData;  
     }
 
-
+    public function UpdateStudent($id,$firstName,$lastName,$birthday){
+       
+        $EditData = $this->studentDA->Update($id,$firstName,$lastName,$birthday);
+        return $EditData;  
+     }
     
     public function DeleteStudent($id) {
 
