@@ -1,16 +1,15 @@
 <?php
  include 'student.php';
  include 'config.php';
-class studentManager{
+class StudentDA{
 
 
     
-    public function insert($student){
+    public function AddStudent($student){
 
-        $firstName = $student->getFirstNom();
+        $firstName = $student->getFirstName();
         $lastName = $student->getLastName();
         $birthday = $student->getBirthday();
-        // requête SQL
         $insertRow="INSERT INTO student(firstName, lastName, birthday) 
                                 VALUES('$firstName', '$lastName', '$birthday')";
 
@@ -19,14 +18,14 @@ class studentManager{
 
     
 
-    public function display(){
-        $SelctRow = 'SELECT id, firstName, lastName, birthday FROM student';
+    public function getStudentes(){
+        $SelctRow = 'SELECT * FROM student';
         $query = mysqli_query(getConnection() ,$SelctRow);
         $students_data = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
         $TableData = array();
         foreach ($students_data as $value_Data) {
-            $student = new Employe();
+            $student = new Student();
             $student->setId($value_Data['id']);
             $student->setFirstName($value_Data['firstName']);
             $student->setLastName($value_Data['lastName']);
@@ -36,6 +35,12 @@ class studentManager{
           return $TableData;
     }
 
+    public function DeleteStudent($id) {
+
+        $sql = "DELETE FROM student WHERE id=". $id;
+
+        return   mysqli_query($this->getConnection(), $sql);
+    }
 
 
 }

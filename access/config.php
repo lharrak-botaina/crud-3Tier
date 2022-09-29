@@ -25,7 +25,7 @@
 
 function getConnection(){
       
-      $Connection = mysqli_connect('localhost', 'root', '', 'student');
+      $Connection = mysqli_connect('localhost', 'root', '', 'crud-3tier');
      
    
  

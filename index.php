@@ -1,9 +1,7 @@
 <?php
-    // include "database/GestionEmployes.php";
     include ("business/studentBusiness.php");
-    // Trouver tous les employés depuis la base de données 
-    $studentManager = new StudentFunction();
-    $data = $studentManager->GetAllstudents();
+    $studentBLL= new StudentBLL();
+    $data = $studentBLL->GetAllStudents();
 ?>
 
 
@@ -35,7 +33,7 @@
                 <td><?= $value->getLastName() ?></td>
                 <td><?= $value->getBirthday() ?></td>
                 <td>
-                    <a href="add.php?id=<?php echo $value->getId() ?>">update</a>
+                    <a href="edit.php?id=<?php echo $value->getId() ?>">update</a>
                     <a href="delete.php?id=<?php echo $value->getId() ?>">delete</a>
                 </td>
             </tr>

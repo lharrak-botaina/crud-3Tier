@@ -1,33 +1,27 @@
 <?php
- require_once './config.php';
- require_once './student.php';
- require_once './studentAccess.php';
- require_once './studentManager.php';
+ 
 
- $errorMessage = '';
+include 'business/studentBusiness.php';
+$errorMessage = '';
 
-if( isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Add Student' ) {
+ $StudentBLL = new StudentBLL();
+if( !empty($_POST) ) {
 
-    $StudentBusniss = new StudentBLL();
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $birthday = $_POST['birthday'];
+    $newStudent = new Student();
+    $newStudent ->setFirstName($_POST['firstName']) ;
+    $newStudent ->setLastName($_POST['lastName']) ;
+    $newStudent ->setBirthday($_POST['birthday']) ;
 
-    $newStudent = new Student(0, $firstName, $lastName, $birthday, );
-    $addStudentResult = $StudentBusniss->AddStudent($newStudent);
+   
+    $addStudentResult = $StudentBLL->AddStudent($newStudent);
+    header("Location: index.php");
 
-    if($addStudentResult > 0) {
-        header("Location: edit.php?id=". $addStudentResult .'&action=add');
-    } else {
-        if ($StudentBusniss->errorMessage != '') {
-            $errorMessage = $StudentBusniss->errorMessage;
-        } else {
-            $errorMessage = 'Record can\'t be added. Operation failed.';
-        }
-    }
+    // if($addStudentResult > 0) {
+    //     header("Location: edit.php?id=". $addStudentResult .'&action=add');
+   
+    // }
 }
 
-$pageTitle = 'Add New Student';
 
 
 
@@ -36,12 +30,10 @@ $pageTitle = 'Add New Student';
     <h1>Add New Student</h1>
 </div>
 
-<?php if ($errorMessage != ''): ?>
-    <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
-<?php endif; ?>
 
 
-    <form action="add.php" method="post" name="studentInfoForm" id="studentInfoForm" class="form-horizontal">
+
+    <form action="" method="post" name="studentInfoForm" id="studentInfoForm" class="form-horizontal">
         <div class="form-group">
             <label for="firstName" class="col-sm-2 control-label">firt name</label>
             <div class="col-sm-4">
