@@ -5,7 +5,8 @@
        
         private $firstName;
         private $lastName;
-        private $birthDate;
+        private $birthday;
+       
        
 
         
@@ -40,11 +41,11 @@
         }
 
         public function getBirthday(){
-            return $this->birthDate;
+            return $this->birthday;
         }
 
         public function setBirthday($value){
-            $this->birthDate= $value;
+            $this->birthday= $value;
         }
 
 
